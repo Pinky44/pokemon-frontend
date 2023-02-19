@@ -1,0 +1,19 @@
+.box_class {
+  display: grid;
+  justify-content: center;
+  gap: 15px;
+  padding-bottom: 20px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 768px) {
+  .box_class {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 320px) {
+  .box_class {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

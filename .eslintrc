@@ -1,0 +1,34 @@
+{
+  "extends": ["react-app", "react-app/jest"],
+  "rules": {
+    "curly": ["error", "all"],
+    "prefer-const": 2,
+    "no-var": 2,
+    "object-shorthand": 2,
+    "no-use-before-define": [0],
+    "@typescript-eslint/no-use-before-define": [1],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ]
+      }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "import/extensions": [1],
+    "import/no-unresolved": [0],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "plugins": ["react", "@typescript-eslint"]
+}
