@@ -28,7 +28,6 @@ export const Login: FC = () => {
   });
 
   const showError = (error: string) => {
-    console.log("error", error)
     setError(error);
     setOpenError(true);
   };
