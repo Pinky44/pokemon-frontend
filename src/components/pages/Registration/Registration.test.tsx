@@ -80,14 +80,14 @@ describe("registration component", () => {
     userEvent.type(registrationInput, "Login23");
     expect(screen.getByDisplayValue("Login23")).toBeInTheDocument();
 
-    userEvent.type(registrationPassword, "Test2");
-    userEvent.type(registrationRepeatedPassword, "Test2");
+    userEvent.type(registrationPassword, "Test");
+    userEvent.type(registrationRepeatedPassword, "Test");
 
     userEvent.click(button)
 
     const error = await screen.findByTestId("registrationPassword_error");
 
-    expect(screen.getByText("Пароль больше 6 симоволов")).toBeInTheDocument()
+    expect(screen.getByText("Пароль должен быть 6 > симоволов")).toBeInTheDocument()
     expect(error).toBeInTheDocument()
   });
   test("Error element: The field should not be empty", async () => {
@@ -98,6 +98,7 @@ describe("registration component", () => {
         </Provider>
       </BrowserRouter>,
     );
+    const registrationInput = await screen.findByTestId("registrationInput");
     const registrationPassword = await screen.findByTestId("registrationPassword");
     const registrationRepeatedPassword = await screen.findByTestId("registrationRepeatedPassword");
     const button = await screen.findByTestId("loginButton");
