@@ -67,6 +67,10 @@ export const registrationUser = (data: FormValues | undefined) => {
       dispatch({ type: UserActionTypes.REGISTRATION_USERS });
       const response = await registrationService(data);
 
+      if (response.message) {
+        return response.message;
+      }
+
       dispatch({
         type: UserActionTypes.REGISTRATION_USERS_SUCCESS,
         payload: response,

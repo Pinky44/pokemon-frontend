@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Pagination as MaterialPagination, MenuItem, Select } from "@mui/material";
 import {
@@ -15,26 +15,32 @@ export const Pagination: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [numbering, setNumbering] = useState(Number(searchParams.get("currentPage")));
 
   const handleChange = (event: any, value: number) => {
+    setNumbering(value)
     dispatch({
       type: PaginationActionTypes.CHANGE_PAGINATION_SUCCESS,
-      payload: { skip: (value - 1) * itemsPerPage, itemsPerPage },
+      payload: { skip: (value - 1) * itemsPerPage, itemsPerPage, currentPage: value },
     });
   };
 
   const handleItemsPerPageChange = (event: any) => {
     dispatch({
       type: PaginationActionTypes.CHANGE_PAGINATION_SUCCESS,
-      payload: { skip: 0, itemsPerPage: event.target.value },
+      payload: { skip: 0, itemsPerPage: event.target.value, currentPage },
     });
     searchParams.set("itemsPerPage", event.target.value);
     setSearchParams(searchParams);
   };
 
   useEffect(() => {
-    searchParams.set("currentPage", currentPage.toString());
+    searchParams.set("currentPage", numbering > 0 ? numbering.toString() : "1");
     setSearchParams(searchParams);
+    dispatch({
+      type: PaginationActionTypes.CHANGE_PAGINATION_SUCCESS,
+      payload: { skip: (numbering - 1) * itemsPerPage, itemsPerPage, currentPage: numbering },
+    });
   }, [currentPage]);
 
   return (
@@ -48,13 +54,12 @@ export const Pagination: React.FC = () => {
 
         <MenuItem value={20}>20</MenuItem>
 
-        <MenuItem value={40}>40</MenuItem>
       </Select>
 
       <MaterialPagination
         size="small"
         count={totalCount}
-        page={currentPage + 1}
+        page={numbering}
         onChange={handleChange}
       />
     </div>

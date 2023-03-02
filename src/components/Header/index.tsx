@@ -58,6 +58,7 @@ export const Header = () => {
           </button>
 
           <Search />
+
           <button className="block-element-button" onClick={logout}>
             Logout
           </button>

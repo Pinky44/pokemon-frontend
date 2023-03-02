@@ -7,6 +7,8 @@ import {
 const initialState: FavoritesState = {
   error: null,
   favorites: [],
+  searchValueFavorites: "",
+  filteredFavoritesPokemones: [],
 };
 
 export const favoritesReducer = (
@@ -28,6 +30,14 @@ export const favoritesReducer = (
         ...state,
         error: null,
         favorites: state.favorites.concat(action.payload),
+      };
+    case FavoritesActionTypes.SEARCH_POKEMONES_FAVORITES:
+      return {
+        ...state,
+        searchValueFavorites: action.payload,
+        filteredFavoritesPokemones: state.favorites.filter((e) =>
+          e.name.match(action.payload)
+        ),
       };
     default:
       return state;

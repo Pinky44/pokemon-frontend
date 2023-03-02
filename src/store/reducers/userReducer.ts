@@ -54,7 +54,7 @@ export const userReducer = (
       };
     case UserActionTypes.REGISTRATION_USERS_SUCCESS:
       return {
-        isAuth: !!action.payload.accessToken ? true : false,
+        isAuth: false,
         error: null,
         users: action.payload.user,
       };

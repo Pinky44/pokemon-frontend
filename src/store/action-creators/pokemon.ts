@@ -27,7 +27,7 @@ export const fetchPokemones = () => {
           allPokemones: allPokemonesData,
         },
       });
-    } catch (e) {
+    } catch (error) {
       dispatch({
         type: PokemonesActionTypes.FETCH_POKEMONES_ERROR,
         payload: `${textErrorWhenLoading} покемонов`,
@@ -62,7 +62,7 @@ export const paginatedPokemones = (skip: number, itemsPerPage: number) => {
           totalCount: Math.floor(paginatedPokemones.count / itemsPerPage),
         },
       });
-    } catch (e) {
+    } catch (error) {
       dispatch({
         type: PokemonesActionTypes.FETCH_POKEMONES_ERROR,
         payload: `${textErrorWhenLoading} покемонов`,
@@ -85,7 +85,7 @@ export const fetchPokemonInfo = (name: string) => {
           pokemonInfo,
         },
       });
-    } catch (e) {
+    } catch (error) {
       dispatch({
         type: PokemonesInfoActionTypes.FETCH_POKEMONES_INFO_ERROR,
         payload: `${textErrorWhenLoading} покемонa`,

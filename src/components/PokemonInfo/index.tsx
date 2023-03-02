@@ -11,7 +11,7 @@ import "./style.scss";
 
 export const PokemonInfo: React.FC = () => {
   const { pokemones } = useAppSelector((state) => state.pokemon);
-  const { pokemonInfo } = useAppSelector((state) => state.pokemonInfo);
+  const { pokemonInfo, error } = useAppSelector((state) => state.pokemonInfo);
 
   const { name } = useParams();
   const navigate = useNavigate();
@@ -31,6 +31,12 @@ export const PokemonInfo: React.FC = () => {
       dispatch(fetchPokemonInfo(name));
     }
   }, []);
+
+  if (error) {
+    return (
+      <div className="error-api">{error}</div>
+    )
+  }
 
   if (!data) {
     return (

@@ -21,9 +21,7 @@ export const paginationReducer = (
         ...state,
         itemsPerPage: action.payload.itemsPerPage,
         skip: action.payload.skip,
-        currentPage: Math.floor(
-          action.payload.skip / action.payload.itemsPerPage
-        ),
+        currentPage: action.payload.currentPage,
       };
     case PaginationActionTypes.CHANGE_TOTAL_PAGINATION:
       return {

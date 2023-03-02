@@ -1,3 +1,5 @@
+import { Pokemon } from "./pokemon";
+
 export type PokemonesInfoAction =
   | FetchPokemonInfoAction
   | FetchPokemonInfoSuccessAction
@@ -6,44 +8,6 @@ export type PokemonesInfoAction =
 export interface PokemonInfoState {
   error: null | string;
   pokemonInfo: Pokemon | null;
-}
-
-export interface Pokemon {
-  id: string;
-  types: {
-    type: {
-      name: string;
-      url: string;
-    };
-  }[];
-  name: string;
-  abilities: {
-    ability: {
-      name: string;
-      url: string;
-    };
-  }[];
-  stats: {
-    base_stat: number;
-    effort: number;
-    stat: {
-      name: string;
-      url: string;
-    };
-  }[];
-  weight: string;
-  height: string;
-  species: {
-    name: string;
-    url: string;
-  };
-  sprites: {
-    other: {
-      "official-artwork": {
-        front_default: string;
-      };
-    };
-  };
 }
 
 export enum PokemonesInfoActionTypes {

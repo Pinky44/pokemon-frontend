@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import useDebounce from "src/store/hooks/useDebounce";
 import { useAppDispatch } from "src/store/hooks/useTypedSelector";
 import { PokemonesActionTypes } from "src/type/pokemon";
+import { FavoritesActionTypes } from "src/type/favorites";
 import close from "src/images/close.png";
 import "./style.scss";
 
@@ -24,6 +25,11 @@ export const Search = () => {
       type: PokemonesActionTypes.SEARCH_POKEMONES,
       payload: search,
     });
+    
+    dispatch({
+      type: FavoritesActionTypes.SEARCH_POKEMONES_FAVORITES,
+      payload: search,
+    });
   }, [debouncedValue]);
 
   return (
@@ -32,7 +38,7 @@ export const Search = () => {
         data-testid="searchInput"
         className="search-input"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => { setSearch(e.target.value) }}
         type="text"
         placeholder="Search"
       />

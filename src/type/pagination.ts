@@ -19,6 +19,7 @@ interface FetchPaginationSuccessAction {
   payload: {
     itemsPerPage: number;
     skip: number;
+    currentPage: number;
   };
 }
 

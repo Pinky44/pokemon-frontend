@@ -7,13 +7,13 @@ import {
 import "./style.scss";
 
 export const Favorites = () => {
-  const { favorites } = useAppSelector((state) => state.favorites);
+  const { favorites, filteredFavoritesPokemones, searchValueFavorites } = useAppSelector((state) => state.favorites);
 
   const markedFavorites = useMemo(() => favorites, []);
 
   return (
     <div className="box_class">
-      {markedFavorites?.map((item: any, index) => {
+      {(searchValueFavorites ? filteredFavoritesPokemones : markedFavorites)?.map((item: any, index) => {
         return <CardPokemon key={index} pokemon={item} isFavorite={!!favorites.find((e) => e.name === item.name)} />;
       })}
     </div>

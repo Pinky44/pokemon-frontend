@@ -29,7 +29,7 @@ export const pokemonInfoReducer = (
     case PokemonesInfoActionTypes.FETCH_POKEMONES_INFO_ERROR:
       return {
         ...state,
-        error: null,
+        error: action.payload,
         pokemonInfo: null,
       };
     default:

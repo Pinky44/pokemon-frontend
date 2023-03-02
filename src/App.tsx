@@ -1,8 +1,14 @@
+import React, { Suspense } from "react";
 import { Routes } from "react-router-dom";
 import { Navigate, Route } from "react-router";
-import { Home, Login, Registration } from "./components/pages";
-import { Favorites, Layout, PokemonInfo, PrivateOutlet } from "./components";
+import {
+  Login, Registration
+} from "./components/pages";
+import { Layout, PokemonInfo, PrivateOutlet } from "./components";
 import "./style.scss";
+
+const Home = React.lazy(() => import("./components/pages/Home/index").then(module => ({ default: module.Home })));
+const Favorites = React.lazy(() => import("./components/Favorites/index").then(module => ({ default: module.Favorites })));
 
 function App() {
   return (
@@ -10,15 +16,13 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route element={<PrivateOutlet />}>
-            <Route index element={<Home />} />
-
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Suspense fallback={<p className="loader"></p>}><Home /></Suspense>} />
 
             <Route path="/pokemon/:name" element={<PokemonInfo />} />
 
             <Route path="*" element={<Navigate to="/" />} />
 
-            <Route path="/favorite" element={<Favorites />} />
+            <Route path="/favorite" element={<Suspense fallback={<p className="loader"></p>}><Favorites /></Suspense>} />
           </Route>
 
           <Route path="/auth" element={<Login />} />

@@ -11,7 +11,7 @@ import { localStorageTokenPair } from "src/helpers/localStorage";
 
 export const Home: FC = () => {
   const { skip, itemsPerPage } = useAppSelector((state) => state.pagination);
-  const { allPokemones, pokemones, isLoading } = useAppSelector(
+  const { allPokemones, pokemones, isLoading, error } = useAppSelector(
     (state) => state.pokemon,
   );
 
@@ -33,6 +33,12 @@ export const Home: FC = () => {
     const tokens = localStorageTokenPair.getItem();
     dispatch(checkTokenUser(tokens.aToken));
   }, []);
+
+  if (error) {
+    return (
+      <div className="error-api">{error}</div>
+    )
+  }
 
   return (
     <div>

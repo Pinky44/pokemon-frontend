@@ -24,7 +24,6 @@ export const pokemonReducer = (
         isLoading: true,
         error: null,
         searchValue: "",
-        filteredPokemones: [],
       };
     case PokemonesActionTypes.FETCH_POKEMONES_SUCCESS:
       return {
@@ -33,7 +32,6 @@ export const pokemonReducer = (
         error: null,
         pokemones: action.payload.pokemones,
         searchValue: "",
-        filteredPokemones: [],
       };
     case PokemonesActionTypes.FETCH_ALL_POKEMONES_SUCCESS:
       return {
@@ -41,7 +39,6 @@ export const pokemonReducer = (
         isLoading: false,
         error: null,
         searchValue: "",
-        filteredPokemones: [],
         allPokemones: action.payload.allPokemones,
       };
     case PokemonesActionTypes.FETCH_POKEMONES_ERROR:

@@ -34,6 +34,7 @@ export const Registration: FC = () => {
 
   const onSubmit = async (data: FormValues) => {
     const error = await dispatch(registrationUser(data));
+
     if (error) {
       showError(error);
 
